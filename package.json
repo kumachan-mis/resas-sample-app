@@ -1,0 +1,35 @@
+{
+  "name": "resas-sample-app",
+  "version": "0.0.1",
+  "description": "sample app using RESAS API",
+  "repository": "https://github.com/kumachan-mis/resas-sample-app.git",
+  "author": "Yuya Suwa (@kumachan-mis)",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.49",
+    "@types/react-dom": "^16.9.8",
+    "@typescript-eslint/eslint-plugin": "^4.1.1",
+    "@typescript-eslint/parser": "^4.1.1",
+    "eslint": "^7.9.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.6",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.3.0",
+    "parcel-bundler": "^1.12.4",
+    "prettier": "^2.1.2",
+    "typescript": "^4.0.2"
+  },
+  "scripts": {
+    "start": "rm -Rf dist && mkdir dist && parcel src/index.html --out-dir dist --open",
+    "typecheck": "tsc --build tsconfig.json",
+    "lint-fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
+    "prettier": "prettier --write \"**/*.{css,html,json,scss,ts,tsx,}\""
+  }
+}

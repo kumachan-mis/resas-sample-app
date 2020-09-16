@@ -3,7 +3,7 @@ import { ApiConstants } from "./constants";
 
 export const ResasApi = {
   async fetchPrefectureList(): Promise<Prefecture[]> {
-    if (process.env.RESAS_API_KEY === undefined) return [];
+    if (!process.env.RESAS_API_KEY) return [];
 
     console.log("fetchPrefectureList()");
     const url = `${ApiConstants.url}/api/v1/prefectures`;
@@ -14,7 +14,7 @@ export const ResasApi = {
     return (await response.json()).result as Prefecture[];
   },
   async fetchPopulationTransition(prefCode: number): Promise<PopulationTransition> {
-    if (process.env.RESAS_API_KEY === undefined) return { populations: [], boundaryYear: -1 };
+    if (!process.env.RESAS_API_KEY) return { populations: [], boundaryYear: -1 };
 
     console.log("fetchPopulationTransition()");
     const url = `${ApiConstants.url}/api/v1/population/composition/perYear`;

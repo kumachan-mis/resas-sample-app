@@ -5,6 +5,9 @@
   "repository": "https://github.com/kumachan-mis/resas-sample-app.git",
   "author": "Yuya Suwa (@kumachan-mis)",
   "private": true,
+  "browserslist": [
+    "last 1 Chrome version"
+  ],
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
@@ -12,6 +15,7 @@
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
+    "@types/node": "^14.10.2",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
     "@typescript-eslint/eslint-plugin": "^4.1.1",

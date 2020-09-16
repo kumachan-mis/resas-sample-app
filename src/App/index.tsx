@@ -3,6 +3,6 @@ import * as React from "react";
 import { ResasApi } from "../api";
 
 export const App: React.FC = () => {
-  ResasApi.fetchPrefectureList().then((prefectures) => console.log(prefectures));
+  ResasApi.fetchPopulationTransition(1).then((transition) => console.log(transition));
   return <></>;
 };

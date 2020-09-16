@@ -1,4 +1,4 @@
-import { Prefecture } from "./types";
+import { Prefecture, Population, PopulationTransition } from "./types";
 import { ApiConstants } from "./constants";
 
 export const ResasApi = {
@@ -11,7 +11,23 @@ export const ResasApi = {
       headers: { "X-API-KEY": process.env.RESAS_API_KEY },
       method: "GET",
     });
-    const json = await response.json();
-    return json.result;
+    return (await response.json()).result as Prefecture[];
+  },
+  async fetchPopulationTransition(prefCode: number): Promise<PopulationTransition> {
+    if (process.env.RESAS_API_KEY === undefined) return { populations: [], boundaryYear: -1 };
+
+    console.log("fetchPopulationTransition()");
+    const url = `${ApiConstants.url}/api/v1/population/composition/perYear`;
+    const query = `prefCode=${prefCode}&cityCode=-`;
+    const response = await fetch(`${url}?${query}`, {
+      headers: { "X-API-KEY": process.env.RESAS_API_KEY },
+      method: "GET",
+    });
+    const result = (await response.json()).result as {
+      boundaryYear: number;
+      data: { label: string; data: Population[] }[];
+    };
+    const populations = result.data.find((datum) => datum.label == "総人口")?.data ?? [];
+    return { populations, boundaryYear: result.boundaryYear };
   },
 };

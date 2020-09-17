@@ -66,6 +66,12 @@ const Constants = {
         align: "right",
         verticalAlign: "middle",
       },
+      chart: {
+        style: {
+          width: "100%",
+          height: "100%",
+        },
+      },
     },
   },
 };

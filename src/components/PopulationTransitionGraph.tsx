@@ -3,10 +3,13 @@ import { Typography, makeStyles } from "@material-ui/core";
 import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-import { HighchartsData } from "./types";
-
 import { usePrefectureListWithStatContext } from "../contexts";
 import { PrefectureWithStat } from "../contexts/types";
+
+interface HighchartsData {
+  name: string;
+  data: [number, number][];
+}
 
 export const PopulationTransitionGraph: React.FC = () => {
   const classes = useStyles();

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { makeStyles } from "@material-ui/core";
+import { Typography, makeStyles } from "@material-ui/core";
 
 import { PrefectureList } from "./PrefectureList";
 import { PopulationTransitionGraph } from "./PopulationTransitionGraph";
@@ -9,6 +9,9 @@ export const App: React.FC = () => {
   const classes = useStyles();
   return (
     <PrefectureListWithStatContextProvider>
+      <div className={classes.title}>
+        <Typography variant="h4">{Constants.title}</Typography>
+      </div>
       <div className={classes.prefectureList}>
         <PrefectureList />
       </div>
@@ -20,12 +23,20 @@ export const App: React.FC = () => {
 };
 
 const useStyles = makeStyles(() => ({
+  title: {
+    width: "100vw",
+    height: "6vh",
+  },
   prefectureList: {
     width: "100vw",
     height: "40vh",
   },
   populationGraph: {
     width: "100vw",
-    height: "56vh",
+    height: "50vh",
   },
 }));
+
+const Constants = {
+  title: "Resas Sample App",
+};

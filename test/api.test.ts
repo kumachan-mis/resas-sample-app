@@ -39,7 +39,10 @@ test("success to fetch population transition", async () => {
     rawJson,
     { query: { prefCode: 1, cityCode: "-" } }
   );
-  const PopulationTransition = await ResasApi.fetchPopulationTransition(1);
-  expect(JSON.stringify(PopulationTransition)).toEqual(JSON.stringify(expectedJson));
+  const populationTransition = await ResasApi.fetchPopulationTransition(1);
+  expect(JSON.stringify(populationTransition.populations)).toEqual(
+    JSON.stringify(expectedJson.populations)
+  );
+  expect(populationTransition.boundaryYear).toEqual(expectedJson.boundaryYear);
   fetchMock.restore();
 });

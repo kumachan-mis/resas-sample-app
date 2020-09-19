@@ -14,17 +14,12 @@ interface HighchartsData {
 export const PopulationTransitionGraph: React.FC = () => {
   const classes = useStyles();
   const { prefectures, populationTransitionLoading } = usePrefectureListWithStatContext();
-  if (populationTransitionLoading) {
-    return (
-      <div className={classes.root}>
-        <Box>{Constants.loading.message}</Box>
-      </div>
-    );
-  }
-
   const series = getHighchartsDataSeries(prefectures);
   return (
     <div className={classes.root}>
+      {populationTransitionLoading && (
+        <Box className={classes.loading}>{Constants.loading.message}</Box>
+      )}
       <HighchartsReact highcharts={Highcharts} options={{ ...Constants.graph.options, series }} />
     </div>
   );
@@ -80,5 +75,14 @@ const useStyles = makeStyles(() => ({
   root: {
     width: "100%",
     height: "100%",
+    position: "relative",
+  },
+  loading: {
+    top: "50%",
+    left: "50%",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    position: "absolute",
+    zIndex: 1,
   },
 }));

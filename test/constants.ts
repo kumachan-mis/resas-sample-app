@@ -7,7 +7,11 @@ export const Constants = {
     expectedPath: path.resolve(__dirname, "..", "test-fixtures", "expected-prefectures.json"),
   },
   popurationTransition: {
-    url: "https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear",
+    url: (prefCode: number): string =>
+      [
+        "https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear",
+        `prefCode=${prefCode}&cityCode=-`,
+      ].join("?"),
     rawPath: path.resolve(__dirname, "..", "test-fixtures", "raw-population-transition.json"),
     expectedPath: path.resolve(
       __dirname,

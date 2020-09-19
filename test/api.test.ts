@@ -20,12 +20,12 @@ test("success to fetch prefecture list", async () => {
 
 test("success to fetch population transition", async () => {
   const constants = Constants.popurationTransition;
-  const rawFile = fs.readFileSync(constants.rawPath, { encoding: "utf-8" });
-  const expectedFile = fs.readFileSync(constants.expectedPath, { encoding: "utf-8" });
+  const rawFile = fs.readFileSync(constants.rawPath, "utf-8");
+  const expectedFile = fs.readFileSync(constants.expectedPath, "utf-8");
   const rawJson = JSON.parse(rawFile);
   const expectedJson = JSON.parse(expectedFile);
 
-  fetchMock.get(constants.url, rawJson, { query: { prefCode: 1, cityCode: "-" } });
+  fetchMock.get(constants.url(1), rawJson);
   const populationTransition = await ResasApi.fetchPopulationTransition(1);
   expect(JSON.stringify(populationTransition.populations)).toEqual(
     JSON.stringify(expectedJson.populations)

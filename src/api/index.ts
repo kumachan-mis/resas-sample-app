@@ -5,7 +5,6 @@ export const ResasApi = {
   async fetchPrefectureList(): Promise<Prefecture[]> {
     if (!process.env.RESAS_API_KEY) return [];
 
-    console.log("fetchPrefectureList()");
     const url = `${ApiConstants.url}/api/v1/prefectures`;
     const response = await fetch(url, {
       headers: { "X-API-KEY": process.env.RESAS_API_KEY },
@@ -16,7 +15,6 @@ export const ResasApi = {
   async fetchPopulationTransition(prefCode: number): Promise<PopulationTransition> {
     if (!process.env.RESAS_API_KEY) return { populations: [], boundaryYear: -1 };
 
-    console.log("fetchPopulationTransition()");
     const url = `${ApiConstants.url}/api/v1/population/composition/perYear`;
     const query = `prefCode=${prefCode}&cityCode=-`;
     const response = await fetch(`${url}?${query}`, {

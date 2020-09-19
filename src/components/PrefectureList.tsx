@@ -8,7 +8,7 @@ export const PrefectureList: React.FC = () => {
   const {
     prefectures,
     prefecturesLoading,
-    setPrefectureCheck,
+    togglePrefectureCheck,
     resetAllPrefecturesCheck,
   } = usePrefectureListWithStatContext();
 
@@ -27,7 +27,7 @@ export const PrefectureList: React.FC = () => {
                 <Grid item xs={2}>
                   <Checkbox
                     edge="end"
-                    onChange={() => setPrefectureCheck(pref.prefCode, !pref.check)}
+                    onChange={() => togglePrefectureCheck(pref.prefCode)}
                     checked={pref.check}
                   />
                 </Grid>

@@ -8,7 +8,7 @@ export const defaultPrefectureListWithStat: PrefectureListWithStat = {
   prefectures: [],
   prefecturesLoading: false,
   populationTransitionLoading: false,
-  setPrefectureCheck: () => {
+  togglePrefectureCheck: () => {
     // do nothing
   },
   resetAllPrefecturesCheck: () => {
@@ -35,12 +35,12 @@ export const PrefectureListWithStatContextProvider: React.FC = (props) => {
     })();
   }, []);
 
-  const setPrefectureCheck = (prefCode: number, check: boolean) => {
+  const togglePrefectureCheck = (prefCode: number) => {
     const newPrefectures = prefectures.slice();
     const targetPref = newPrefectures.find((pref) => pref.prefCode == prefCode);
     if (!targetPref) return;
 
-    targetPref.check = check;
+    targetPref.check = !targetPref.check;
     if (targetPref.check && !targetPref.transition) {
       setPopulationTransitionLoading(true);
       (async () => {
@@ -64,7 +64,7 @@ export const PrefectureListWithStatContextProvider: React.FC = (props) => {
         prefectures,
         prefecturesLoading,
         populationTransitionLoading,
-        setPrefectureCheck,
+        togglePrefectureCheck,
         resetAllPrefecturesCheck,
       }}
     >

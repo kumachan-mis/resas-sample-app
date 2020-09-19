@@ -9,6 +9,6 @@ export interface PrefectureListWithStat {
   prefectures: PrefectureWithStat[];
   prefecturesLoading: boolean;
   populationTransitionLoading: boolean;
-  setPrefectureCheck: (prefCode: number, check: boolean) => void;
+  togglePrefectureCheck: (prefCode: number) => void;
   resetAllPrefecturesCheck: () => void;
 }

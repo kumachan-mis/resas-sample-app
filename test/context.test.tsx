@@ -82,7 +82,9 @@ test("check all scenario", async () => {
   for (let prefCode = 1; prefCode <= 47; prefCode++) {
     await toggleCheck(context, prefCode);
   }
-  expect(context.prefectures.every((pref) => pref.check)).toEqual(true);
+  expect(
+    context.prefectures.every((pref) => pref.check && Array.isArray(pref.transition?.populations))
+  ).toEqual(true);
   act(context.resetAllPrefecturesCheck);
   assertCheckList(context, []);
 });
@@ -109,7 +111,7 @@ async function toggleCheck(context: PrefectureListWithStat, prefCode: number): P
 
 function assertCheckList(context: PrefectureListWithStat, expectedCheckList: number[]): void {
   const actualCheckList = context.prefectures
-    .filter((pref) => pref.check)
+    .filter((pref) => pref.check && Array.isArray(pref.transition?.populations))
     .map((pref) => pref.prefCode);
 
   const value = (() => {

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Grid, Typography, Checkbox, makeStyles } from "@material-ui/core";
+import { Grid, Box, Typography, Checkbox, Button, makeStyles } from "@material-ui/core";
 
 import { usePrefectureListWithStatContext } from "../contexts";
 
@@ -9,12 +9,13 @@ export const PrefectureList: React.FC = () => {
     prefectures,
     prefecturesLoading,
     setPrefectureCheck,
+    resetAllPrefecturesCheck,
   } = usePrefectureListWithStatContext();
 
   if (prefecturesLoading) {
     return (
       <div className={classes.root}>
-        <Typography>{Constants.loading.message}</Typography>
+        <Box>{Constants.loading.message}</Box>
       </div>
     );
   }
@@ -22,7 +23,7 @@ export const PrefectureList: React.FC = () => {
   return (
     <div className={classes.root}>
       <Grid className={classes.title} item xs={12}>
-        <Typography variant="h5">{Constants.list.title}</Typography>
+        <Box fontWeight="fontWeightBold">{Constants.list.title}</Box>
       </Grid>
       <Grid className={classes.list} item xs={12}>
         <Grid container>
@@ -42,6 +43,11 @@ export const PrefectureList: React.FC = () => {
           ))}
         </Grid>
       </Grid>
+      <Grid className={classes.clearButton} item xs={12} container justify="flex-end">
+        <Button variant="outlined" onClick={resetAllPrefecturesCheck}>
+          {Constants.clearButton.name}
+        </Button>
+      </Grid>
     </div>
   );
 };
@@ -53,6 +59,9 @@ const Constants = {
   list: {
     title: "都道府県",
   },
+  clearButton: {
+    name: "全てのチェックを外す",
+  },
 };
 
 const useStyles = makeStyles(() => ({
@@ -61,13 +70,19 @@ const useStyles = makeStyles(() => ({
     height: "100%",
   },
   title: {
-    height: "30px",
+    width: "100%",
+    height: "24px",
   },
   list: {
-    height: "calc(100% - 30px)",
+    height: "calc(100% - 60px)",
     overflowY: "scroll",
   },
   item: {
     padding: "2px",
+  },
+  clearButton: {
+    width: "100%",
+    height: "36px",
+    paddingRight: "20px",
   },
 }));

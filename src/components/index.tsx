@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Typography, makeStyles } from "@material-ui/core";
+import { Box, makeStyles } from "@material-ui/core";
 
 import { PrefectureList } from "./PrefectureList";
 import { PopulationTransitionGraph } from "./PopulationTransitionGraph";
@@ -10,7 +10,9 @@ export const App: React.FC = () => {
   return (
     <PrefectureListWithStatContextProvider>
       <div className={classes.title}>
-        <Typography variant="h4">{Constants.title}</Typography>
+        <Box fontSize="h5.fontSize" fontWeight="fontWeightBold" textAlign="center">
+          {Constants.title}
+        </Box>
       </div>
       <div className={classes.prefectureList}>
         <PrefectureList />

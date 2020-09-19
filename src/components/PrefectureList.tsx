@@ -12,36 +12,32 @@ export const PrefectureList: React.FC = () => {
     resetAllPrefecturesCheck,
   } = usePrefectureListWithStatContext();
 
-  if (prefecturesLoading) {
-    return (
-      <div className={classes.root}>
-        <Box>{Constants.loading.message}</Box>
-      </div>
-    );
-  }
-
   return (
     <div className={classes.root}>
       <Grid className={classes.title} item xs={12}>
         <Box fontWeight="fontWeightBold">{Constants.list.title}</Box>
       </Grid>
       <Grid className={classes.list} item xs={12}>
-        <Grid container>
-          {prefectures.map((pref) => (
-            <Grid key={pref.prefCode} className={classes.item} item xs={3} container>
-              <Grid item xs={2}>
-                <Checkbox
-                  edge="end"
-                  onChange={() => setPrefectureCheck(pref.prefCode, !pref.check)}
-                  checked={pref.check}
-                />
+        {prefecturesLoading ? (
+          <Box>{Constants.loading.message}</Box>
+        ) : (
+          <Grid container>
+            {prefectures.map((pref) => (
+              <Grid key={pref.prefCode} className={classes.item} item xs={3} container>
+                <Grid item xs={2}>
+                  <Checkbox
+                    edge="end"
+                    onChange={() => setPrefectureCheck(pref.prefCode, !pref.check)}
+                    checked={pref.check}
+                  />
+                </Grid>
+                <Grid item xs={10} container alignItems="center">
+                  <Typography>{pref.prefName}</Typography>
+                </Grid>
               </Grid>
-              <Grid item xs={10} container alignItems="center">
-                <Typography>{pref.prefName}</Typography>
-              </Grid>
-            </Grid>
-          ))}
-        </Grid>
+            ))}
+          </Grid>
+        )}
       </Grid>
       <Grid className={classes.clearButton} item xs={12} container justify="flex-end">
         <Button variant="outlined" onClick={resetAllPrefecturesCheck}>

@@ -11,6 +11,9 @@ export const defaultPrefectureListWithStat: PrefectureListWithStat = {
   setPrefectureCheck: () => {
     // do nothing
   },
+  resetAllPrefecturesCheck: () => {
+    // do nothing
+  },
 };
 
 const PrefectureListWithStatContext = React.createContext(defaultPrefectureListWithStat);
@@ -50,9 +53,20 @@ export const PrefectureListWithStatContextProvider: React.FC = (props) => {
     }
   };
 
+  const resetAllPrefecturesCheck = () => {
+    const newPrefectures = prefectures.map((pref) => ({ ...pref, check: false }));
+    setPrefectures(newPrefectures);
+  };
+
   return (
     <PrefectureListWithStatContext.Provider
-      value={{ prefectures, prefecturesLoading, populationTransitionLoading, setPrefectureCheck }}
+      value={{
+        prefectures,
+        prefecturesLoading,
+        populationTransitionLoading,
+        setPrefectureCheck,
+        resetAllPrefecturesCheck,
+      }}
     >
       {props.children}
     </PrefectureListWithStatContext.Provider>

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Typography, makeStyles } from "@material-ui/core";
+import { Box, makeStyles } from "@material-ui/core";
 import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
@@ -17,7 +17,7 @@ export const PopulationTransitionGraph: React.FC = () => {
   if (populationTransitionLoading) {
     return (
       <div className={classes.root}>
-        <Typography>{Constants.loading.message}</Typography>
+        <Box>{Constants.loading.message}</Box>
       </div>
     );
   }
